@@ -1,13 +1,67 @@
-# React + Vite
+# Tic-Tac-Toe Game in React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Tic-Tac-Toe game built using React. This project demonstrates the use of React state management, component-based design, and event handling.
 
-Currently, two official plugins are available:
+## Features
+- Play as X or O in a 3x3 grid.
+- Dynamic turn-based gameplay.
+- Detects a winner or a draw automatically.
+- Reset functionality to start a new game.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
+  ```
+tic-tac-toe/
+│── src/
+│   │── components/
+│   │   │── TicTacToe.jsx  # Main game logic component
+│   │   │── Board.jsx      # Renders the game board
+│   │   │── Square.jsx     # Represents individual game cells
+│   │── App.jsx           # Main application component
+│   │── index.jsx         # Entry point
+│   │── index.html        # Main HTML file
+│── package.json         # Dependencies and scripts
+│── .gitignore           # Files to exclude from Git tracking
+│── README.md            # Project documentation
+│── index.css           # Global styles
+```
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# React-Tic-Tac-Toe
+1. Clone the repository:
+    ```
+    git clone https://github.com/YOUR_USERNAME/tic-tac-toe.git
+    ```
+
+2. Navigate to the project directory:
+    ```
+    cd tic-tac-toe
+    ```
+
+3. Install dependencies:
+   ```
+   npm install
+   ```
+
+4. Start the development server:
+   ```
+   npm start
+   ```
+
+## Usage
+- Click on any empty cell to mark your move.
+- The game alternates turns between Player X and Player O.
+- If a player completes a winning combination, the winner is displayed.
+- If all cells are filled without a winner, the game ends in a draw.
+- Click the Reset Game button to start a new round.
+
+
+## Technologies Used
+- React
+- JavaScript (ES6)
+- CSS for styling
+
+## License
+This project is licensed under the MIT License.
+
+
+   
