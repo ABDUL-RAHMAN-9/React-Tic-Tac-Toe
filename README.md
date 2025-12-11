@@ -1,67 +1,63 @@
-# Tic-Tac-Toe Game in React
+    
+<div align="center">
 
-A simple Tic-Tac-Toe game built using React. This project demonstrates the use of React state management, component-based design, and event handling.
+  <h1>React Tic-Tac-Toe</h1>
+  <p>
+    <strong>A high-fidelity, minimalist reimagining of the classic game.</strong><br>
+    Featuring intelligent AI, glassmorphism UI, and fluid animations.
+  </p>
 
-## Features
-- Play as X or O in a 3x3 grid.
-- Dynamic turn-based gameplay.
-- Detects a winner or a draw automatically.
-- Reset functionality to start a new game.
+  <br />
+</div>
 
-## Project Structure
-  ```
+##  Overview
+
+This is not just another Tic-Tac-Toe game. It is a **modern web experience** built with **React 19 & Vite**, designed with a focus on **UI/UX architecture** and **clean code principles**. 
+
+The application features a "Pro" visual style inspired by Vercel and Apple design systems, utilizing **CSS Glassmorphism**, **Ambient Aurora Backgrounds**, and **smooth state transitions**.
+
+##  Key Features
+
+-  Intelligent AI Opponent:** A logic-based computer opponent that blocks player moves and plays strategically.
+-  Glassmorphism UI:** Premium aesthetic with frosted glass panels, dynamic lighting, and subtle shadows.
+-  Ambient Aurora Background:** A living, breathing background animation that replaces static grids.
+-  Real-time Scoreboard:** Persists game state and tracks scores dynamically during the session.
+-  Reactive State Management:** Built with React Hooks (`useState`, `useEffect`, `useCallback`) for instant feedback.
+-  Fully Responsive:** Optimized for desktop, tablets, and mobile devices.
+
+##  Tech Stack
+
+- **Core:** React 19, JavaScript (ES6+)
+- **Build Tool:** Vite (Super fast HMR & Build)
+- **Styling:** CSS3 Variables, Keyframe Animations, Flexbox/Grid
+- **Deployment:** GitHub Pages (CI/CD Action)
+
+##  Project Architecture
+
+A clean, component-based structure ensuring scalability and readability.
+
+```bash
 tic-tac-toe/
+│── public/
 │── src/
 │   │── components/
-│   │   │── TicTacToe.jsx  # Main game logic component
-│   │   │── Board.jsx      # Renders the game board
-│   │   │── Square.jsx     # Represents individual game cells
-│   │── App.jsx           # Main application component
-│   │── index.jsx         # Entry point
-│   │── index.html        # Main HTML file
-│── package.json         # Dependencies and scripts
-│── .gitignore           # Files to exclude from Git tracking
-│── README.md            # Project documentation
-│── index.css           # Global styles
+│   │   │── TicTacToe.jsx    #  Game Engine & AI Logic
+│   │   │── StartScreen.jsx  #  User Onboarding & Mode Selection
+│   │   │── Board.jsx        #  Grid Renderer
+│   │   │── Square.jsx       #  Atomic UI Component
+│   │── App.jsx              #  Root Layout Wrapper
+│   │── index.jsx            #  Entry Point
+│   │── index.css            #  Global Design System & Variables
+│── vite.config.js           #  Build Configuration
+│── package.json             #  Dependencies
+│── README.md                #  Documentation
+
 ```
-
-## Installation
-
-1. Clone the repository:
-    ```
-    git clone https://github.com/YOUR_USERNAME/tic-tac-toe.git
-    ```
-
-2. Navigate to the project directory:
-    ```
-    cd tic-tac-toe
-    ```
-
-3. Install dependencies:
-   ```
-   npm install
-   ```
-
-4. Start the development server:
-   ```
-   npm start
-   ```
-
-## Usage
-- Click on any empty cell to mark your move.
-- The game alternates turns between Player X and Player O.
-- If a player completes a winning combination, the winner is displayed.
-- If all cells are filled without a winner, the game ends in a draw.
-- Click the Reset Game button to start a new round.
+    
+###  One final tip for you:
 
 
-## Technologies Used
-- React
-- JavaScript (ES6)
-- CSS for styling
-
-## License
-This project is licensed under the MIT License.
-
-
-   
+<div align="center">
+  <h2> App Preview</h2>
+  <img width="1917" height="943" alt="Screenshot 2025-12-11 113718" src="https://github.com/user-attachments/assets/d2d8bc2e-f470-4138-9d7b-3a5839c8a36b" />
+</div>
