@@ -1,81 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  --bg-dark: #050505;
+  --glass-panel: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --grid-line: rgba(255, 255, 255, 0.03);
 }
 
 body {
   margin: 0;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-
-.board {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  /* Architectural Grid Background */
+  background-color: #050505;
+}
+
+/* --- NEW MODERN BACKGROUND: Ambient Aurora --- */
+
+/* 1. Deep Background */
+
+
+/* 2. Blue Glow (Top Left) */
+body::before {
+  content: '';
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  background: var(--accent-blue);
+  /* Uses your existing variable */
+  opacity: 0.15;
+  /* Very subtle */
+  filter: blur(120px);
+  /* Extreme blur for softness */
+  top: -10%;
+  left: -10%;
+  z-index: -1;
+  border-radius: 50%;
+  animation: floatBlue 20s infinite alternate ease-in-out;
+}
+
+/* 3. Purple Glow (Bottom Right) */
+body::after {
+  content: '';
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  background: var(--accent-purple);
+  /* Uses your existing variable */
+  opacity: 0.12;
+  filter: blur(140px);
+  bottom: -10%;
+  right: -10%;
+  z-index: -1;
+  border-radius: 50%;
+  animation: floatPurple 25s infinite alternate-reverse ease-in-out;
+}
+
+/* 4. Animations to make them breathe */
+@keyframes floatBlue {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(50px, 50px) scale(1.1);
+  }
+}
+
+@keyframes floatPurple {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-50px, -30px) scale(1.1);
+  }
+}
+
+
+.board-container {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  height: 100vh;
-  width: 100vw;
+  position: relative;
+  z-index: 1;
+}
 
+/* Typography */
+h1 {
+  font-weight: 300;
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* --- COMPONENTS --- */
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background: var(--glass-panel);
+  padding: 10px 30px;
+  border-radius: 99px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.score-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.active-turn {
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Game Grid */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--glass-border);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background: rgba(10, 10, 10, 0.8);
+  border: none;
+  font-size: 2.5rem;
+  font-weight: 200;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.square:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.square.x {
+  color: var(--accent-blue);
+}
+
+.square.o {
+  color: var(--accent-purple);
+}
+
+.square.winner {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Start Screen */
+.start-screen {
+  background: var(--glass-panel);
+  padding: 3rem;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.custom-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.custom-input:focus {
+  border-color: var(--accent-blue);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* 1. Start Button (Solid White) */
+.start-btn {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  letter-spacing: -0.02em;
+  box-shadow: 0 10px 20px -10px rgba(255, 255, 255, 0.3);
+  width: 100%;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  /* Subtler, softer shadow */
+  box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.25);
+}
+
+.start-btn:active {
+  transform: scale(0.98);
+}
+
+/* 2. Reset Button (Ghost Pill) */
+.reset-btn {
+  margin-top: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  padding: 12px 28px;
+  font-size: 0.85rem;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.reset-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* 3. Mode Toggle (Segmented Control) */
+.mode-toggle {
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--glass-border);
+}
+
+.toggle-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #666;
+  padding: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.toggle-btn:hover {
+  color: #fff;
+}
+
+.toggle-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* 4. Back Button */
+.back-btn {
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: white;
+  color: black;
+  transform: translateX(-3px);
+}
+
+.game-info {
+  margin-top: 2rem;
+  text-align: center;
+  height: 50px;
+}
+
+.winner-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* --- NEW FOOTER STYLES --- */
+.developer-footer {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  z-index: 10;
+  text-align: right;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.developer-footer:hover {
+  opacity: 1;
+}
+
+.dev-name {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.dev-name:hover {
+  color: var(--accent-blue);
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+/* Mobile responsive for footer */
+@media (max-width: 600px) {
+  .developer-footer {
+    width: 100%;
+    text-align: center;
+    right: 0;
+    bottom: 10px;
+    background: rgba(5, 5, 5, 0.8);
+    padding: 10px 0;
+    backdrop-filter: blur(5px);
+  }
 }
