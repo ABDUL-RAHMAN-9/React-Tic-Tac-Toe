@@ -1,23 +1,20 @@
 import React from 'react';
 
-const Square = ({ value, onClick, isDisabled }) =>
+const Square = ({ value, onClick, isWinningSquare }) =>
 {
+    let className = "square";
+    if (value === 'X') className += " x";
+    if (value === 'O') className += " o";
+    if (isWinningSquare) className += " winner";
+
     return (
-        <>
-            <button
-                onClick={onClick}
-                disabled={isDisabled} // Disables button after win
-                style={
-                    {
-                        width: '100px',
-                        height: '100px',
-                        fontSize: '2rem',
-                        textAlign: 'center',
-                        cursor: isDisabled ? 'not-allowed' : 'pointer'
-                    }}>
-                {value}
-            </button>
-        </>
+        <button
+            className={className}
+            onClick={onClick}
+            disabled={value !== null}
+        >
+            {value}
+        </button>
     );
 };
 
